@@ -1,7 +1,39 @@
-public class Car extends Vehicle{
+public class Car implements ServiceStation{
+    private String modelName;
+    private int wheelsCount;
 
     public Car(String modelName, int wheelsCount) {
-        super(modelName, wheelsCount);
+        if (modelName != null) {
+            this.modelName = modelName;
+        } else {
+            throw new RuntimeException("Название модели не может быть null!");
+        }
+        this.wheelsCount = wheelsCount;
+    }
+
+    public void check() {
+        System.out.println("Обслуживаем " + this.getModelName());
+        for (int i = 0; i < this.getWheelsCount(); i++) {
+            this.updateTyre();
+        }
+        this.checkEngine();
+        System.out.println();
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public int getWheelsCount() {
+        return wheelsCount;
+    }
+
+    public void setWheelsCount(int wheelsCount) {
+        this.wheelsCount = wheelsCount;
     }
 
     public void updateTyre() {
@@ -13,6 +45,6 @@ public class Car extends Vehicle{
     }
 
     public String toString() {
-       return super.toString();
+        return "Model Name : " + getModelName() + ";  Wheels Count = " + getWheelsCount();
     }
 }
